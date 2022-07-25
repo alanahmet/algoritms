@@ -1,5 +1,5 @@
-a = "asd"
-a.
-a = a[:0] + a[0].upper() + a[0 + 1:]
-print(a)
-
+b = "asdfasda"
+a = {}
+for i in b:a[i] = 1 if not a.get(i) else a[i] + 1
+a["a"]-=3
+print(b[0])
