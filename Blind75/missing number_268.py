@@ -1,14 +1,7 @@
-class Solution(object):
-    def missingNumber(self, nums):
-        smaller = nums[0]
-        larger = nums[0]
-        sum = 0
-        for i in nums:
-            sum += i
-            smaller = min(smaller, i)
-            larger = max(larger, i)
-        expected_sum = ((larger + smaller) * (larger - smaller + 1)) / 2
-        missing = int(expected_sum - sum)
-        return missing if missing is not 0 else larger + 1
+class Solution:
+    def missingNumber(self, nums: [int]) -> int:
+        ans = len(nums)
 
-print(Solution().missingNumber([0,1]))
+        for i, num in enumerate(nums):
+            ans ^= i ^ num
+print(Solution().missingNumber([9,6,4,2,3,5,7,0,1]))

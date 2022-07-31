@@ -1,8 +1,6 @@
-class Solution(object):
-    def singleNumber(self, nums):
-        dic = {}
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        res = 0
         for i in nums:
-            dic[i] = dic.get(i, 0) + 1
-
-        for key, val in dic.items():
-            if val == 1: return key
+            res ^= i
+        return res

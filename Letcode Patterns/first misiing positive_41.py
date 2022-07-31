@@ -1,8 +1,11 @@
 class Solution:
     def firstMissingPositive(self, nums: [int]) -> int:
-        num_set = set(nums)
-        for i in range(1, len(nums) + 2):
-            print(i)
-            if i not in num_set:
-                return i
-print(Solution().firstMissingPositive([1]))
+        l = len(nums)
+        for i in range(l):
+            while 0 < nums[i] <= l and nums[nums[i] - 1] != nums[i]:
+                nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]
+
+        for i, v in enumerate(nums):
+            if not i + 1 == v:
+                return i + 1
+        return l + 1
