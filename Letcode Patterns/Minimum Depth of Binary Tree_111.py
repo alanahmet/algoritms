@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def minDepth(self, root):
-        # BFS
+        #BFS
         if not root:
             return 0
         queue = collections.deque([(root, 1)])
@@ -15,9 +15,8 @@ class Solution:
             if node:
                 if not node.left and not node.right:
                     return level
-                else:
-                    queue.append((node.left, level + 1))
-                    queue.append((node.right, level + 1))
+                queue.append((node.left, level + 1))
+                queue.append((node.right, level + 1))
 
         # DFS
         # if not root:
