@@ -1,4 +1,2 @@
-s = "asdf"
-dic = {}
-dic[1:10]
-print(dic)
+for i in range(1, -1, -1):
+    print(i)
