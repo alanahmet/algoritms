@@ -1,26 +1,24 @@
 class Solution:
-    def kthSmallest(self, matrix: [[int]], k: int) -> int:
-        indexs = {i: 0 for i in range(len(matrix))}
-        smallest = matrix[0][0]
-        sorted_arr = []
-        new_s = False
-        smallest_index = 0
-        while indexs:
-            for i, v in indexs.items():
-                if new_s == True:
-                    smallest_index = i
-                    new_s = False
-                if matrix[i][v] <= smallest:
-                    smallest_index = i
-            smallest = matrix[smallest_index][indexs[smallest_index]]
-            print(smallest_index, indexs, smallest)
-            indexs[smallest_index] += 1
-            sorted_arr.append(smallest)
-            if indexs[smallest_index] == len(matrix):
-                indexs.pop(smallest_index)
-                new_s = True
-        print(sorted_arr)
-        return sorted_arr[k - 1]
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+        l = matrix[0][0]
+        r = matrix[-1][-1]
 
+        def numsNoGreaterThan(m: int) -> int:
+            count = 0
+            j = len(matrix[0]) - 1
+            # for each row, find the first index j s.t. row[j] <= m
+            # so numsNoGreaterThan m for this row will be j + 1
+            for row in matrix:
+                while j >= 0 and row[j] > m:
+                    j -= 1
+                count += j + 1
+            return count
 
-print(Solution().kthSmallest([[1,4],[2,5]], 2))
+        while l < r:
+            m = (l + r) // 2
+            if numsNoGreaterThan(m) >= k:
+                r = m
+            else:
+                l = m + 1
+
+        return l

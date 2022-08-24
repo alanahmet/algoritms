@@ -1,17 +1,16 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        l = len(nums)
-        res = []
+        res, visited, l = [], [False] * len(nums), len(nums)
 
-        def backtrack(s, sub, r):
-            if s == l:
-                res.append(sub)
+        def bc(part):
+            if len(part) == l:
+                res.append(part)
                 return
-            for i in nums:
-                if not i in r:
-                    r.add(i)
-                    backtrack(s + 1, sub + [i], r)
-                    r.remove(i)
+            for i, v in enumerate(nums):
+                if not visited[i]:
+                    visited[i] = True
+                    bc(part + [v])
+                    visited[i] = False
 
-        backtrack(0, [], set())
+        bc([])
         return res

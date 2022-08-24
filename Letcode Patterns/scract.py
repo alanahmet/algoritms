@@ -1,2 +1,2 @@
-for i in range(1, -1, -1):
-    print(i)
+if 0:
+    print(10)
