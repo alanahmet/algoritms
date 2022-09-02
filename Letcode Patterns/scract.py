@@ -2,10 +2,6 @@ import collections
 import copy
 
 import numpy
-print(15 % 10)
-
-a = [[1,7], [2, 4]]
-
-a.sort()
-
-print(a)
+a = [3,2,1]
+b = [v**2 for v in sorted(a)]
+print(b)
