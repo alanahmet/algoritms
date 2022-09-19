@@ -1,3 +1,4 @@
 import collections
 
-print(1000 >> 2)
+a = 'asdf'
+print(a.count('a'))
