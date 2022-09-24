@@ -1,19 +1,12 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        cntr, w, match = Counter(s1), len(s1), 0
-
-        for i in range(len(s2)):
-            if s2[i] in cntr:
-                if not cntr[s2[i]]: match -= 1
-                cntr[s2[i]] -= 1
-                if not cntr[s2[i]]: match += 1
-
-            if i >= w and s2[i - w] in cntr:
-                if not cntr[s2[i - w]]: match -= 1
-                cntr[s2[i - w]] += 1
-                if not cntr[s2[i - w]]: match += 1
-
-            if match == len(cntr):
+        count, j = Counter(s1), 0
+        for i, v in enumerate(s2):
+            count[v] -= 1
+            while count[v] < 0:
+                count[s2[j]] += 1
+                j += 1
+            if i - j + 1 == len(s1):
                 return True
 
         return False
